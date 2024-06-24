@@ -1,0 +1,9 @@
+#sm-mensaje{
+  color: red;
+  font-size: small;
+}
+
+.swal2-container {
+  width: 300px;
+  height: 300px;
+}

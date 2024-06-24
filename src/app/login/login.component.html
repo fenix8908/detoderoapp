@@ -1,0 +1,34 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow p-4">
+    <form [formGroup]="loginForm" (ngSubmit)="autenticar()">
+      <div class="mb-3">
+        <label for="verified_user" class="form-label">Usuario</label>
+        <input
+          type="text"
+          class="form-control"
+          id="verified_user"
+          aria-describedby="usuario"
+          formControlName="usuario"
+        />
+        <div *ngIf="f['usuario'].touched && f['usuario'].invalid" id="sm-mensaje">
+          <small *ngIf="f['usuario'].errors?.['required']">El nombre es requerido</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="" class="form-label">Contraseña</label>
+        <input
+          type="password"
+          class="form-control"
+          id="txt-pass"
+          formControlName="password"
+        />
+        <div *ngIf="f['password'].touched && f['password'].invalid" id="sm-mensaje">
+          <small *ngIf="f['password'].errors?.['required']">El password es requerido</small>
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" [disabled]="loginForm.invalid"  class="btn btn-primary btn-md">Iniciar sesión</button>
+      </div>
+    </form>
+  </div>
+</div>
