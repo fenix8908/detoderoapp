@@ -2,7 +2,7 @@ import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { tap } from 'rxjs';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const loginUrl = 'http://localhost:8080/authenticate';
+  const loginUrl = 'http://localhost:8080/login';
   const token = localStorage.getItem('jwtToken');
   const refreshToken = localStorage.getItem('jwtTokenRefresh');
 

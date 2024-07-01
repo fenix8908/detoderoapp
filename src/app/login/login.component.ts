@@ -51,6 +51,7 @@ export class LoginComponent {
           this.loginResponse = response;
           localStorage.setItem('jwtToken', this.loginResponse.tokenResponse);
           localStorage.setItem('jwtTokenRefresh', this.loginResponse.refreshToken);
+          localStorage.setItem('roles',JSON.stringify(this.loginResponse.roles))
           console.log('Respuesta:', response);
         },
         error: err => {
@@ -60,13 +61,8 @@ export class LoginComponent {
             title: "Oops...",
             text: err.error,
           });
-
         },
         complete: () => {
-          Swal.fire({
-            title: "Buen trabajo!",
-            icon: "success"
-          });
           console.log('Proceso completado');
         }
       });

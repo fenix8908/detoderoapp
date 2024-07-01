@@ -8,7 +8,7 @@ import { LoginResponse } from '../models/login-response';
   providedIn: 'root',
 })
 export class LoginService {
-  urlLogin: string = 'http://localhost:8080/authenticate';
+  urlLogin: string = 'http://localhost:8080/login';
 
   constructor(private http: HttpClient) {}
 
