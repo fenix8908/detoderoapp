@@ -1,4 +1,4 @@
-import { Cliente} from './../models/cliente';
+import { Cliente} from '../models/cliente';
 import { Component, OnInit } from '@angular/core';
 import { ClienteService } from '../service/cliente.service';
 import { NgFor } from '@angular/common';
@@ -7,8 +7,8 @@ import { NgFor } from '@angular/common';
   selector: 'app-cliente',
   standalone: true,
   imports: [NgFor],
-  templateUrl: './cliente.component.html',
-  styleUrl: './cliente.component.css',
+  templateUrl: './cliente_lista.component.html',
+  styleUrl: './cliente_lista.component.css',
 })
 export class ClienteComponent implements OnInit {
   clienteResponse: Cliente[] = [];
