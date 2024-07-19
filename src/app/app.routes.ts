@@ -6,12 +6,11 @@ import { HomeComponent } from './home/home/home.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [permisosGuard],
+    data: { roles: ['ROLE_ADMIN'] }},
   {
     path: 'clientes',
-    component: ClienteComponent,
-    canActivate: [permisosGuard],
-    data: { roles: ['ROLE_ADMIN'] },
+    component: ClienteComponent
   },
   { path: '**', component: LoginComponent },
 ];

@@ -10,6 +10,7 @@ import {
 import { LoginService } from '../service/login.service';
 import { LoginRequest } from '../models/login-request';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,7 @@ export class LoginComponent {
   contrasena!: string;
 
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private router:Router) {
     this.loginForm = new FormGroup({
       usuario: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
@@ -53,6 +54,7 @@ export class LoginComponent {
           localStorage.setItem('jwtTokenRefresh', this.loginResponse.refreshToken);
           localStorage.setItem('roles',JSON.stringify(this.loginResponse.roles))
           console.log('Respuesta:', response);
+          this.router.navigate(['/home'])
         },
         error: err => {
           console.log('Error:', err.error);

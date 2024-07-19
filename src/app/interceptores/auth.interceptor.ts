@@ -1,10 +1,14 @@
 import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
+import { inject } from '@angular/core';
 import { tap } from 'rxjs';
+import { TokenStorageService } from '../service/token/token-storage.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const loginUrl = 'http://localhost:8080/login';
   const token = localStorage.getItem('jwtToken');
   const refreshToken = localStorage.getItem('jwtTokenRefresh');
+
+
 
   // Verifica si la solicitud es para el endpoint de login
   // Si es el login, simplemente pasa la solicitud sin modificarla
