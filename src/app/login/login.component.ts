@@ -43,7 +43,6 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.usuario = this.loginForm.get('usuario')?.value;
       this.contrasena = this.loginForm.get('password')?.value;
-
       this.loginRequest.usuario = this.usuario;
       this.loginRequest.contraseña = this.contrasena;
 
@@ -52,9 +51,7 @@ export class LoginComponent {
           this.loginResponse = response;
           localStorage.setItem('jwtToken', this.loginResponse.tokenResponse);
           localStorage.setItem('jwtTokenRefresh', this.loginResponse.refreshToken);
-          localStorage.setItem('roles',JSON.stringify(this.loginResponse.roles))
           console.log('Respuesta:', response);
-          this.router.navigate(['/home'])
         },
         error: err => {
           console.log('Error:', err.error);
@@ -65,6 +62,7 @@ export class LoginComponent {
           });
         },
         complete: () => {
+          this.router.navigate(['/home'])
           console.log('Proceso completado');
         }
       });

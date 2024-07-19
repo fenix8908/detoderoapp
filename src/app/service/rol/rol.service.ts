@@ -7,13 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class RolService {
 
-  urlServicio: string = 'http://localhost:8080/clientes/listado';
+  urlServicio: string = 'http://localhost:8080/roles/por-usuario/';
   constructor(private http: HttpClient) { }
 
   public obtenerRolesPorUsuario(usuario:string):Observable<string[]>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.get<string[]>("",{headers})
+    return this.http.get<string[]>(this.urlServicio + `${usuario}`,{headers})
   }
 }

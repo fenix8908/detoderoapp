@@ -8,8 +8,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token = localStorage.getItem('jwtToken');
   const refreshToken = localStorage.getItem('jwtTokenRefresh');
 
-
-
   // Verifica si la solicitud es para el endpoint de login
   // Si es el login, simplemente pasa la solicitud sin modificarla
   if (req.url.includes(loginUrl)) {
