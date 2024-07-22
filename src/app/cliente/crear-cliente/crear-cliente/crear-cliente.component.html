@@ -1,0 +1,50 @@
+<div class="container position-absolute top-50 start-50 translate-middle">
+  <form class="">
+    <div class="row justify-content-md-center">
+      <div class="col-4">
+        <mat-form-field class="input-nombre">
+          <mat-label>Nombre del cliente</mat-label>
+          <input
+            matInput
+            #input
+            placeholder="Ejemplo. Jorge"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-4">
+        <mat-form-field class="input-apellido">
+          <mat-label>Apellido del cliente</mat-label>
+          <input
+            matInput
+            #input
+            placeholder="Ejemplo. Gutierrez"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row justify-content-md-center">
+        <div class="col-4">
+          <mat-form-field class="input-apellido">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              matInput
+              [formControl]="emailFormControl"
+              [errorStateMatcher]="matcher"
+              placeholder="Ejemplo. pat@example.com"
+            />
+
+            @if (emailFormControl.hasError('email') &&
+            !emailFormControl.hasError('required')) {
+            <mat-error>Por favor ingrese un correo válido</mat-error>
+            } @if (emailFormControl.hasError('required')) {
+            <mat-error>El correo <strong>es requerido</strong></mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+  </form>
+</div>
