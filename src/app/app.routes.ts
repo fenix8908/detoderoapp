@@ -7,12 +7,21 @@ import { CrearClienteComponent } from './cliente/crear-cliente/crear-cliente/cre
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate: [permisosGuard],
-    data: { roles: ['ROLE_ADMIN'] }},
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [permisosGuard],
+    data: { roles: ['ROLE_ADMIN'] },
+  },
   {
     path: 'clientes',
-    component: ClienteComponent
+    component: ClienteComponent,
   },
-  { path: 'crear-cliente', component: CrearClienteComponent },
+  {
+    path: 'crear-cliente',
+    component: CrearClienteComponent,
+    canActivate: [permisosGuard],
+    data: { roles: ['ROLE_ADMIN'] },
+  },
   { path: '**', component: LoginComponent },
 ];

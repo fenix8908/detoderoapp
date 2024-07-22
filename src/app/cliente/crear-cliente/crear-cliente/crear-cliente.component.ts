@@ -10,30 +10,36 @@ import {
   Validators,
   FormsModule,
   ReactiveFormsModule,
+  FormGroup,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @Component({
   selector: 'app-crear-cliente',
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule, MatSelectModule,
-    FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
+    FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,MatButtonModule],
   templateUrl: './crear-cliente.component.html',
   styleUrl: './crear-cliente.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CrearClienteComponent {
+[x: string]: any;
 
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  matcher = new MyErrorStateMatcher();
+  clienteForm!: FormGroup;
 
-
-}
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  constructor(){
+    this.clienteForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      nombre :new FormControl('',[Validators.required]),
+      apellido: new FormControl('',[Validators.required])
+    });
   }
+
+  pintarDatosFormmulario(){
+    console.log(this.clienteForm.value);
+  }
+
 }

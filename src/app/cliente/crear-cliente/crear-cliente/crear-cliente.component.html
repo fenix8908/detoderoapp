@@ -1,50 +1,69 @@
-<div class="container position-absolute top-50 start-50 translate-middle">
-  <form class="">
-    <div class="row justify-content-md-center">
-      <div class="col-4">
-        <mat-form-field class="input-nombre">
-          <mat-label>Nombre del cliente</mat-label>
-          <input
-            matInput
-            #input
-            placeholder="Ejemplo. Jorge"
-          />
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="row justify-content-md-center">
-      <div class="col-4">
-        <mat-form-field class="input-apellido">
-          <mat-label>Apellido del cliente</mat-label>
-          <input
-            matInput
-            #input
-            placeholder="Ejemplo. Gutierrez"
-          />
-        </mat-form-field>
-      </div>
-    </div>
-
-    <div class="row justify-content-md-center">
-        <div class="col-4">
-          <mat-form-field class="input-apellido">
-            <mat-label>Email</mat-label>
-            <input
-              type="email"
-              matInput
-              [formControl]="emailFormControl"
-              [errorStateMatcher]="matcher"
-              placeholder="Ejemplo. pat@example.com"
-            />
-
-            @if (emailFormControl.hasError('email') &&
-            !emailFormControl.hasError('required')) {
-            <mat-error>Por favor ingrese un correo válido</mat-error>
-            } @if (emailFormControl.hasError('required')) {
-            <mat-error>El correo <strong>es requerido</strong></mat-error>
-            }
-          </mat-form-field>
+<div class="position-absolute top-50 start-50 translate-middle shadow-lg p-3 mb-5 bg-body rounded">
+  <div class="card text-dark bg-light" style="width: 600px">
+    <div class="card-header text-center">Registro de clientes</div>
+    <div class="card-body">
+      <form class="" [formGroup]="clienteForm" (ngSubmit)="pintarDatosFormmulario()">
+        <div class="row justify-content-md-center">
+          <div class="col-8">
+            <mat-form-field class="input-nombre">
+              <mat-label>Nombre del cliente</mat-label>
+              <input
+                matInput
+                #input
+                placeholder="Ejemplo. Jorge"
+                formControlName ="nombre"
+              />
+              @if(clienteForm.controls['nombre'].hasError('required')){
+              <mat-error>El nombre es requerido</mat-error>
+              }
+            </mat-form-field>
+          </div>
         </div>
-      </div>
-  </form>
+        <div class="row justify-content-md-center">
+          <div class="col-8">
+            <mat-form-field class="input-apellido">
+              <mat-label>Apellido del cliente</mat-label>
+              <input
+                matInput
+                #input
+                placeholder="Ejemplo. Gutierrez"
+                formControlName="apellido"
+              />
+              @if(clienteForm.controls['apellido'].hasError('required')){
+              <mat-error>El apellido es requerido</mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row justify-content-md-center">
+          <div class="col-8">
+            <mat-form-field class="input-apellido">
+              <mat-label>Email</mat-label>
+              <input
+                type="email"
+                matInput
+                formControlName="email"
+                placeholder="Ejemplo. pat@example.com"
+              />
+
+              @if (clienteForm.controls['email'].hasError('email') &&
+              !clienteForm.controls['email'].hasError('required')) {
+              <mat-error>Por favor ingrese un correo válido</mat-error>
+              } @if (clienteForm.controls['email'].hasError('required')) {
+              <mat-error>El correo <strong>es requerido</strong></mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <section>
+            <div class="example-button-row text-center">
+              <button mat-raised-button type="submit" [disabled]="clienteForm.invalid">Guardar</button>
+            </div>
+          </section>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
