@@ -1,8 +1,9 @@
 import { Cliente} from '../models/cliente';
 import { Component, OnInit } from '@angular/core';
-import { ClienteService } from '../service/cliente.service';
+
 import { NgFor } from '@angular/common';
 import { Router } from '@angular/router';
+import { ClienteService } from '../service/cliente/cliente.service';
 
 @Component({
   selector: 'app-cliente',
@@ -24,7 +25,6 @@ export class ClienteComponent implements OnInit {
       next: (respuesta) => {
         respuesta.forEach((e,i) => {
           const cliente = new Cliente(
-            e.id,
             e.nombre,
             e.apellido,
             e.email,

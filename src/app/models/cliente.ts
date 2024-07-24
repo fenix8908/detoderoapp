@@ -1,15 +1,13 @@
 export class Cliente {
 
-    id:number;
     nombre:string;
     apellido:string;
     email:string;
     telefono:string;
     direccion:string;
-    fechaRegistro:Date;
+    fechaRegistro:string;
 
-    constructor(id:number, nombre:string,apellido:string, email:string,telefono:string, direccion:string, fechaRegistro:Date){
-      this.id= id;
+    constructor(nombre:string,apellido:string, email:string,telefono:string, direccion:string, fechaRegistro:string){
       this.nombre= nombre;
       this.apellido= apellido;
       this.email = email;

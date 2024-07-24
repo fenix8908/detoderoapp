@@ -2,10 +2,10 @@
   <div class="card text-dark bg-light" style="width: 600px">
     <div class="card-header text-center">Registro de clientes</div>
     <div class="card-body">
-      <form class="" [formGroup]="clienteForm" (ngSubmit)="pintarDatosFormmulario()">
+      <form class="" [formGroup]="clienteForm" (ngSubmit)="guardarCliente()">
         <div class="row justify-content-md-center">
           <div class="col-8">
-            <mat-form-field class="input-nombre">
+            <mat-form-field class="input-cliente">
               <mat-label>Nombre del cliente</mat-label>
               <input
                 matInput
@@ -21,8 +21,8 @@
         </div>
         <div class="row justify-content-md-center">
           <div class="col-8">
-            <mat-form-field class="input-apellido">
-              <mat-label>Apellido del cliente</mat-label>
+            <mat-form-field class="input-cliente">
+              <mat-label>Apellidos del cliente</mat-label>
               <input
                 matInput
                 #input
@@ -38,7 +38,7 @@
 
         <div class="row justify-content-md-center">
           <div class="col-8">
-            <mat-form-field class="input-apellido">
+            <mat-form-field class="input-cliente">
               <mat-label>Email</mat-label>
               <input
                 type="email"
@@ -53,6 +53,32 @@
               } @if (clienteForm.controls['email'].hasError('required')) {
               <mat-error>El correo <strong>es requerido</strong></mat-error>
               }
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row justify-content-md-center">
+          <div class="col-8">
+            <mat-form-field class="input-cliente">
+              <mat-label>Telefono</mat-label>
+              <span matTextPrefix>+57 &nbsp;</span>
+              <input type="tel" matInput placeholder="3002001331" formControlName = "telefono" maxlength="10">
+              <mat-icon matSuffix>mode_edit</mat-icon>
+              @if(clienteForm.controls['telefono'].hasError('required')){
+              <mat-error>El telefono es requerido</mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row justify-content-md-center">
+          <div class="col-8">
+            <mat-form-field class="input-cliente">
+              <mat-label>Direccion</mat-label>
+              <input
+                matInput
+                #input
+                placeholder="Ejemplo. calle 53 # 28-82"
+                formControlName ="direccion"
+              />
             </mat-form-field>
           </div>
         </div>
