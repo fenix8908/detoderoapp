@@ -2,13 +2,13 @@ import { Cliente} from '../models/cliente';
 import { Component, OnInit } from '@angular/core';
 
 import { NgFor } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ClienteService } from '../service/cliente/cliente.service';
 
 @Component({
   selector: 'app-cliente',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor,RouterLink],
   templateUrl: './cliente_lista.component.html',
   styleUrl: './cliente_lista.component.css',
 })
@@ -25,6 +25,7 @@ export class ClienteComponent implements OnInit {
       next: (respuesta) => {
         respuesta.forEach((e,i) => {
           const cliente = new Cliente(
+            e.id!,
             e.nombre,
             e.apellido,
             e.email,

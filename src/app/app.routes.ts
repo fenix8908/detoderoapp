@@ -4,6 +4,7 @@ import { ClienteComponent } from './cliente/cliente_lista.component';
 import { permisosGuard } from './guards/permisos.guard';
 import { HomeComponent } from './home/home/home.component';
 import { CrearClienteComponent } from './cliente/crear-cliente/crear-cliente/crear-cliente.component';
+import { EditarClienteComponent } from './cliente/editar/editar-cliente/editar-cliente.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -20,6 +21,12 @@ export const routes: Routes = [
   {
     path: 'crear-cliente',
     component: CrearClienteComponent,
+    canActivate: [permisosGuard],
+    data: { roles: ['ROLE_ADMIN'] },
+  },
+  {
+    path: 'edit-cliente/:id',
+    component: EditarClienteComponent,
     canActivate: [permisosGuard],
     data: { roles: ['ROLE_ADMIN'] },
   },

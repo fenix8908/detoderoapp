@@ -7,18 +7,24 @@ import { Cliente } from '../../models/cliente';
   providedIn: 'root',
 })
 export class ClienteService {
-  urlServicio: string = 'http://localhost:8080/clientes/listado';
-  urlCrearCliente: string = 'http://localhost:8080/clientes/crear';
+  baseUrl = 'http://localhost:8080/clientes';
   constructor(private http: HttpClient) {}
 
   public obtenerClientes(): Observable<Cliente[]> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.http.get<Cliente[]>(this.urlServicio, { headers });
+    return this.http.get<Cliente[]>(this.baseUrl + '/listado', { headers });
   }
 
   public crearCliente(cliente: Cliente): Observable<any> {
-    return this.http.post<any>(this.urlCrearCliente, cliente);
+    return this.http.post<any>(this.baseUrl + '/crear', cliente);
+  }
+
+  public editarCliente(cliente: Cliente): Observable<any> {
+    return this.http.put<any>(this.baseUrl + `/editar/${cliente.id}`, cliente);
+  }
+  public buscarClientePorId(id: number): Observable<any> {
+    return this.http.get<any>(this.baseUrl + `/buscar/${id}`);
   }
 }

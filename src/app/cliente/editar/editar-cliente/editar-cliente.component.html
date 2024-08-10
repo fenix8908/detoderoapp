@@ -1,0 +1,102 @@
+
+
+<div class="position-absolute top-50 start-50 translate-middle shadow-lg p-3 mb-5 bg-body rounded">
+  <div class="card text-dark bg-light" style="width: 600px">
+    <div class="card-header text-center">Editar cliente</div>
+    <div class="card-body">
+      <form class="" [formGroup]="editForm">
+        <div class="row justify-content-md-center">
+          <div class="col-8">
+            <mat-form-field class="input-cliente">
+              <mat-label>Nombre Cliente</mat-label>
+              <input
+                matInput
+                #input
+                placeholder="Ejemplo. Jorge"
+                formControlName ="nombre"
+              />
+              <mat-icon matSuffix>mode_edit</mat-icon>
+               @if(editForm.controls['nombre'].hasError('required')){
+                <mat-error>El nombre es requerido</mat-error>
+               }
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row justify-content-md-center">
+          <div class="col-8">
+            <mat-form-field class="input-cliente">
+              <mat-label>Apellidos del cliente</mat-label>
+              <input
+                matInput
+                #input
+                placeholder="Ejemplo. Gutierrez"
+                formControlName="apellido"
+              />
+              <mat-icon matSuffix>mode_edit</mat-icon>
+              @if(editForm.controls['apellido'].hasError('required')){
+                <mat-error>El apellido es requerido</mat-error>
+                }
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row justify-content-md-center">
+          <div class="col-8">
+            <mat-form-field class="input-cliente">
+              <mat-label>Email</mat-label>
+              <input
+                type="email"
+                matInput
+                formControlName="email"
+                placeholder="Ejemplo. pat@example.com"
+              />
+              <mat-icon matSuffix>mode_edit</mat-icon>
+              @if (editForm.controls['email'].hasError('email') &&
+              !editForm.controls['email'].hasError('required')) {
+              <mat-error>Por favor ingrese un correo válido</mat-error>
+              } @if (editForm.controls['email'].hasError('required')) {
+              <mat-error>El correo <strong>es requerido</strong></mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row justify-content-md-center">
+          <div class="col-8">
+            <mat-form-field class="input-cliente">
+              <mat-label>Telefono</mat-label>
+              <span matTextPrefix>+57 &nbsp;</span>
+              <input type="tel" matInput placeholder="3002001331" formControlName = "telefono" maxlength="10">
+              <mat-icon matSuffix>mode_edit</mat-icon>
+              @if(editForm.get('telefono')?.invalid && (editForm.get('telefono')?.dirty || editForm.get('telefono')?.touched)){
+                <mat-error>El telefono <strong>es requerido</strong></mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row justify-content-md-center">
+          <div class="col-8">
+            <mat-form-field class="input-cliente">
+              <mat-label>Direccion</mat-label>
+              <input
+                matInput
+                #input
+                placeholder="Ejemplo. calle 53 # 28-82"
+                formControlName ="direccion"
+              />
+              <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <section>
+            <div class="example-button-row text-center">
+              <button mat-raised-button type="submit" [disabled]="editForm.invalid">Guardar</button>
+            </div>
+          </section>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
