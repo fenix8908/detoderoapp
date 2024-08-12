@@ -4,11 +4,12 @@ import { Component, OnInit } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { ClienteService } from '../service/cliente/cliente.service';
+import { HomeComponent } from "../home/home/home.component";
 
 @Component({
   selector: 'app-cliente',
   standalone: true,
-  imports: [NgFor,RouterLink],
+  imports: [NgFor, RouterLink, HomeComponent],
   templateUrl: './cliente_lista.component.html',
   styleUrl: './cliente_lista.component.css',
 })

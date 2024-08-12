@@ -16,6 +16,7 @@ import { ClienteService } from '../../../service/cliente/cliente.service';
 import { Cliente } from '../../../models/cliente';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { HomeComponent } from "../../../home/home/home.component";
 
 @Component({
   selector: 'app-crear-cliente',
@@ -30,7 +31,8 @@ import { Router } from '@angular/router';
     ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
-  ],
+    HomeComponent
+],
   templateUrl: './crear-cliente.component.html',
   styleUrl: './crear-cliente.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

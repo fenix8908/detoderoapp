@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteService } from '../../../service/cliente/cliente.service';
+import { HomeComponent } from '../../../home/home/home.component';
 import {
   FormBuilder,
   FormGroup,
@@ -24,7 +25,8 @@ import Swal from 'sweetalert2';
     NgIf,
     MatIconModule,
     MatButtonModule,
-  ],
+    HomeComponent
+],
   templateUrl: './editar-cliente.component.html',
   styleUrl: './editar-cliente.component.css',
 })
