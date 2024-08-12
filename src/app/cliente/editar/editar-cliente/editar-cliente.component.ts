@@ -1,27 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteService } from '../../../service/cliente/cliente.service';
-import { FormBuilder, FormGroup,ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NgIf } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-cliente',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule,ReactiveFormsModule,NgIf,MatIconModule],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    NgIf,
+    MatIconModule,
+    MatButtonModule,
+  ],
   templateUrl: './editar-cliente.component.html',
   styleUrl: './editar-cliente.component.css',
 })
 export class EditarClienteComponent implements OnInit {
-  editForm!: FormGroup;
+  editForm: FormGroup;
   idCliente!: number;
 
   constructor(
     private clienteService: ClienteService,
     private fb: FormBuilder,
-    private route: Router,
+    private router: Router,
     private rutaActiva: ActivatedRoute
   ) {
     this.editForm = this.fb.group({
@@ -34,7 +48,11 @@ export class EditarClienteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.idCliente = Number(this.rutaActiva.snapshot.paramMap.get('id'))!;
+    this.obtenerDatosCliente();
+  }
+
+  public obtenerDatosCliente() {
+    this.idCliente = Number(this.rutaActiva.snapshot.paramMap.get('id'));
     if (this.idCliente) {
       this.clienteService.buscarClientePorId(this.idCliente).subscribe({
         next: (data) => {
@@ -48,6 +66,30 @@ export class EditarClienteComponent implements OnInit {
         },
         error: (err) => {},
       });
+    }
+  }
+
+  actualizarClieente() {
+    if (this.editForm.valid) {
+      this.clienteService
+        .editarCliente(this.editForm.value, this.idCliente)
+        .subscribe({
+          next: (res) => {
+            Swal.fire({
+              title: "Cliente actualizado!",
+              text: "presiona el boton para continuar!",
+              icon: "success"
+            });
+            this.router.navigateByUrl('/clientes')
+          },
+          error: (err) => {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: err.error
+            });
+          },
+        });
     }
   }
 }

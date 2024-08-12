@@ -21,8 +21,8 @@ export class ClienteService {
     return this.http.post<any>(this.baseUrl + '/crear', cliente);
   }
 
-  public editarCliente(cliente: Cliente): Observable<any> {
-    return this.http.put<any>(this.baseUrl + `/editar/${cliente.id}`, cliente);
+  public editarCliente(cliente: Cliente, id: number): Observable<any> {
+    return this.http.put<any>(this.baseUrl + `/editar/${id}`, cliente);
   }
   public buscarClientePorId(id: number): Observable<any> {
     return this.http.get<any>(this.baseUrl + `/buscar/${id}`);

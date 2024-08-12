@@ -4,7 +4,7 @@
   <div class="card text-dark bg-light" style="width: 600px">
     <div class="card-header text-center">Editar cliente</div>
     <div class="card-body">
-      <form class="" [formGroup]="editForm">
+      <form class="" [formGroup]="editForm" (ngSubmit)="actualizarClieente()">
         <div class="row justify-content-md-center">
           <div class="col-8">
             <mat-form-field class="input-cliente">
